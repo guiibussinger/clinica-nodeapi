@@ -1,10 +1,19 @@
-const express = require("express");
+const express = require('express');
 const routes = express.Router();
 
-// routes.get("/products", ProductController.index);
-// routes.post("/products", ProductController.store);
-// routes.get("/products/:id", ProductController.show);
-// routes.put("/products/:id", ProductController.update);
-// routes.delete("/products/:id", ProductController.destroy);
+const PersonController = require('./controllers/PersonController');
+const ConsultController = require('./controllers/ConsultController');
+
+routes.get('/person', PersonController.get);
+routes.post('/person', PersonController.create);
+routes.get('/person/:id', PersonController.getById);
+routes.put('/person/:id', PersonController.update);
+routes.delete('/person/:id', PersonController.destroy);
+
+routes.get('/consult', ConsultController.get);
+routes.post('/consult', ConsultController.create);
+routes.get('/consult/:id', ConsultController.getById);
+routes.put('/consult/:id', ConsultController.update);
+routes.delete('/consult/:id', ConsultController.destroy);
 
 module.exports = routes;

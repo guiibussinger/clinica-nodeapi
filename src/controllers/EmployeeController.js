@@ -1,5 +1,6 @@
-import uuid from 'uuid';
+const uuid = require('uuid');
 
+const mongoose = require('mongoose');
 const Person = mongoose.model('Person');
 
 const create = async body => {

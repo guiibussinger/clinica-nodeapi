@@ -31,6 +31,7 @@ exports.get = (req, res) => {
     case PersonEnum.personTypeValue.medic:
       result = MedicController.get();
   }
+  return res.json({ name: 'teste' });
   res.json(result);
 };
 
@@ -80,5 +81,3 @@ exports.destroy = (req, res) => {
   }
   res.send();
 };
-
-exports.get(req, res);

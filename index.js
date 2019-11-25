@@ -1,5 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
+
+require('./src/models/Person');
+require('./src/models/Consult');
 
 // Iniciando o App
 const app = express();
@@ -9,13 +12,13 @@ const app = express();
 //   useNewUrlParser: true
 // });
 
-app.get("/", (req, res) => {
-  return res.send("Clinica API");
+app.get('/', (req, res) => {
+  return res.send('Clinica API');
 });
 
-app.use(`/api`, require("./src/routes"));
+app.use(`/api`, require('./src/routes'));
 
 port = 8000;
 app.listen(port, () => {
-  console.log("Servidor em execução no port " + port);
+  console.log('Servidor em execução no port ' + port);
 });
