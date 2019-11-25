@@ -1,7 +1,6 @@
-const uuid = require('uuid');
-
 const mongoose = require('mongoose');
 const Person = mongoose.model('Person');
+const uuid = require('uuid');
 
 const create = async body => {
   const createEmployee = {
@@ -9,27 +8,26 @@ const create = async body => {
     idPerson: uuid.v1()
   };
   const employee = await Person.create(createEmployee);
-
   return employee;
 };
 
 const get = async () => {
-  const employee = await Person.get();
+  const employee = await Person.find();
   return employee;
 };
 
 const getById = async id => {
-  const employee = await Person.findById(id);
+  const employee = await Person.findById({ idPerson: id });
   return employee;
 };
 
 const update = async (body, id) => {
-  const employee = await Person.findByIdAndUpdate(id, body, { new: true });
+  const employee = await Person.update({ idPerson: id }, body);
   return employee;
 };
 
 const destroy = async id => {
-  const employee = await Person.findByIdAndDelete(id);
+  const employee = await Person.remove({ idPerson: id });
 
   return employee;
 };
