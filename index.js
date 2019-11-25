@@ -1,5 +1,6 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
+var mongoose = require('mongoose');
 
 require('./src/models/Person');
 require('./src/models/Consult');
@@ -8,11 +9,21 @@ require('./src/models/Consult');
 const app = express();
 
 // conectando ao banco de dados local
-MongoClient.connect('mongodb://127.0.0.1:27017/clinica', (error, db) => {
-  if (error) return console.log(error);
+// using mongodb
+// MongoClient.connect('mongodb://127.0.0.1:27017/clinica', (error, db) => {
+//   if (error) return console.log(error);
 
+//   console.log('connected to database');
+//   db.close();
+// });
+
+// using mangoose
+mongoose.connect('mongodb://127.0.0.1:27017/clinica', { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  // we're connected!
   console.log('connected to database');
-  db.close();
 });
 
 app.get('/', (req, res) => {
