@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate");
+const mongoose = require('mongoose');
 
 const ConsultSchema = new mongoose.Schema({
   idConsult: { type: String, required: true },
@@ -9,6 +8,4 @@ const ConsultSchema = new mongoose.Schema({
   endTime: { type: Date, default: Date.now }
 });
 
-PersonSchema.plugin(mongoosePaginate);
-
-mongoose.model("Consult", ConsultSchema);
+mongoose.model('Consult', ConsultSchema);

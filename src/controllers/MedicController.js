@@ -1,32 +1,36 @@
-const Person = mongoose.model("Person");
+const Person = mongoose.model('Person');
 
 const create = async body => {
   const medic = await Person.create(body);
 
-  return res.json(medic);
+  return medic;
 };
 
-const get = async id =>{
+const get = async id => {
   const medic = await Person.findById(id);
 
-  return res.json(medic);
+  return medic;
 };
 
-const update = async (body, id) =>{
-  const medic = await Person.findByIdAndUpdate(id, body, {new: true });
-
-  return res.json(medic);
+const getById = async id => {
+  const medic = await Person.findById(id);
+  return medic;
 };
 
-const destroy = async id =>{
-  await Person.findByIdAndDelete(id);
+const update = async (body, id) => {
+  const medic = await Person.findByIdAndUpdate(id, body);
+  return medic;
+};
 
-  return res.send();
+const destroy = async id => {
+  const medic = await Person.findByIdAndDelete(id);
+  return medic;
 };
 
 module.exports = {
   create,
   get,
+  getById,
   update,
   destroy
 };

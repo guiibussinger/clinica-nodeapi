@@ -1,6 +1,6 @@
-import uuid from "uuid";
+import uuid from 'uuid';
 
-const Person = mongoose.model("Person");
+const Person = mongoose.model('Person');
 
 const create = async body => {
   const createEmployee = {
@@ -9,30 +9,34 @@ const create = async body => {
   };
   const employee = await Person.create(createEmployee);
 
-  return res.json(employee);
+  return employee;
 };
 
-const get = async id => {
-  const employee = await Person.findById(id);
+const get = async () => {
+  const employee = await Person.get();
+  return employee;
+};
 
-  return res.json(employee);
+const getById = async id => {
+  const employee = await Person.findById(id);
+  return employee;
 };
 
 const update = async (body, id) => {
   const employee = await Person.findByIdAndUpdate(id, body, { new: true });
-
-  return res.json(employee);
+  return employee;
 };
 
 const destroy = async id => {
-  await Person.findByIdAndDelete(id);
+  const employee = await Person.findByIdAndDelete(id);
 
-  return res.send();
+  return employee;
 };
 
 module.exports = {
   create,
   get,
+  getById,
   update,
   destroy
 };

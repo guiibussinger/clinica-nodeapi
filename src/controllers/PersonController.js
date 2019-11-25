@@ -1,8 +1,8 @@
-const PacientController = require("./PacientController");
-const MedicController = require("./MedicController");
-const EmployeeController = require("./EmployeeController");
+const PacientController = require('./PacientController');
+const MedicController = require('./MedicController');
+const EmployeeController = require('./EmployeeController');
 
-const PersonEnum = require("../config/personTypeEnum");
+const PersonEnum = require('../config/personTypeEnum');
 
 exports.create = (req, res) => {
   const { body } = req;
@@ -15,23 +15,39 @@ exports.create = (req, res) => {
     case PersonEnum.personTypeValue.medic:
       result = MedicController.create(body);
   }
-  res.send(result);
+  res.json(result);
 };
 
 exports.get = (req, res) => {
+  const {
+    params: { type }
+  } = req;
+  let result;
+  switch (type) {
+    case PersonEnum.personTypeValue.pacient:
+      result = PacientController.get();
+    case PersonEnum.personTypeValue.employee:
+      result = EmployeeController.get();
+    case PersonEnum.personTypeValue.medic:
+      result = MedicController.get();
+  }
+  res.json(result);
+};
+
+exports.getById = (req, res) => {
   const {
     params: { id, type }
   } = req;
   let result;
   switch (type) {
     case PersonEnum.personTypeValue.pacient:
-      result = PacientController.get(id);
+      result = PacientController.getById(id);
     case PersonEnum.personTypeValue.employee:
-      result = EmployeeController.get(id);
+      result = EmployeeController.getById(id);
     case PersonEnum.personTypeValue.medic:
-      result = MedicController.get(id);
+      result = MedicController.getById(id);
   }
-  res.send(result);
+  res.json(result);
 };
 
 exports.update = (req, res) => {
@@ -39,32 +55,30 @@ exports.update = (req, res) => {
     body,
     params: { id }
   } = req;
-  let result;
   switch (params.type) {
     case PersonEnum.personTypeValue.pacient:
-      result = PacientController.update(id, body);
+      PacientController.update(id, body);
     case PersonEnum.personTypeValue.employee:
-      result = EmployeeController.update(id, body);
+      EmployeeController.update(id, body);
     case PersonEnum.personTypeValue.medic:
-      result = MedicController.update(id, body);
+      MedicController.update(id, body);
   }
-  res.send(result);
+  res.send();
 };
 
 exports.destroy = (req, res) => {
   const {
     params: { id, type }
   } = req;
-  let result;
   switch (type) {
     case PersonEnum.personTypeValue.pacient:
-      result = PacientController.destroy(id);
+      PacientController.destroy(id);
     case PersonEnum.personTypeValue.employee:
-      result = EmployeeController.destroy(id);
+      EmployeeController.destroy(id);
     case PersonEnum.personTypeValue.medic:
-      result = MedicController.destroy(id);
+      MedicController.destroy(id);
   }
-  res.send(result);
+  res.send();
 };
 
 exports.get(req, res);
