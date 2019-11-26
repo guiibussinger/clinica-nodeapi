@@ -12,8 +12,8 @@ routes.delete('/person', PersonController.destroy);
 
 routes.get('/consult', ConsultController.get);
 routes.post('/consult', ConsultController.create);
-routes.get('/consult/:id', ConsultController.getById);
-routes.put('/consult/:id', ConsultController.update);
-routes.delete('/consult/:id', ConsultController.destroy);
+routes.get('/consultById', ConsultController.getById);
+routes.put('/consult', ConsultController.update);
+routes.delete('/consult', ConsultController.destroy);
 
 module.exports = routes;

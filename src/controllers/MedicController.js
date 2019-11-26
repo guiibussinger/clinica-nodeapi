@@ -12,7 +12,7 @@ const create = async body => {
 };
 
 const get = async () => {
-  const medic = await Person.find();
+  const medic = await Person.find({ type: 2 });
   return medic;
 };
 
