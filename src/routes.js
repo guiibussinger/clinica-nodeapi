@@ -6,9 +6,9 @@ const ConsultController = require('./controllers/ConsultController');
 
 routes.get('/person', PersonController.get);
 routes.post('/person', PersonController.create);
-routes.get('/person/:id', PersonController.getById);
-routes.put('/person/:id', PersonController.update);
-routes.delete('/person/:id', PersonController.destroy);
+routes.get('/personById', PersonController.getById);
+routes.put('/person', PersonController.update);
+routes.delete('/person', PersonController.destroy);
 
 routes.get('/consult', ConsultController.get);
 routes.post('/consult', ConsultController.create);

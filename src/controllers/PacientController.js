@@ -12,17 +12,17 @@ const create = async body => {
 };
 
 const get = async () => {
-  const pacient = await Person.find();
+  const pacient = await Person.find({ type: 0 });
   return pacient;
 };
 
 const getById = async id => {
-  const pacient = await Person.findById({ idPerson: id });
-  return pacient;
+  const pacient = await Person.find({ idPerson: id });
+  return pacient[0];
 };
 
-const update = async (body, id) => {
-  const pacient = await Person.update({ idPerson: id }, body);
+const update = async (idPerson, body) => {
+  const pacient = await Person.update({ idPerson }, body);
   return pacient;
 };
 

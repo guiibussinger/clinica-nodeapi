@@ -11,7 +11,7 @@ const create = async body => {
   return medic;
 };
 
-const get = async id => {
+const get = async () => {
   const medic = await Person.find();
   return medic;
 };
@@ -21,8 +21,8 @@ const getById = async id => {
   return medic;
 };
 
-const update = async (body, id) => {
-  const medic = await Person.update({ idPerson: id }, body);
+const update = async (idPerson, body) => {
+  const medic = await Person.update({ idPerson }, body);
   return medic;
 };
 

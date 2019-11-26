@@ -1,6 +1,7 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 require('./src/models/Person');
 require('./src/models/Consult');
@@ -25,6 +26,14 @@ db.once('open', () => {
   // we're connected!
   console.log('connected to database');
 });
+
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   return res.send('Clinica API');
